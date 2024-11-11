@@ -3,11 +3,14 @@ import api from '../../services/api'
 import { Title, Container, Containerinputs, Form, InputLabel, Input } from './styles'
 import Button from '../../components/Button'
 import TopBackground from '../../components/Background'
+import { useNavigate } from 'react-router-dom'
 
 function Home() {
   const inputName = useRef() 
   const inputAge = useRef() 
   const inputEmail = useRef() 
+
+  const navigate = useNavigate()
 
   async function registerNewUser() {
     await api.post('/Rota', {
@@ -41,8 +44,11 @@ function Home() {
           <Input type='email' placeholder='E-mail do usuário'ref={inputEmail} />
         </div>
 
-        <Button type='button' onClick={registerNewUser}>Cadastrar Usuário</Button>
+        <Button type='button' onClick={registerNewUser} theme="primary">Cadastrar Usuário</Button>
+
       </Form>
+
+      <Button type="button" onClick={() => navigate('/lista-de-usuarios')}>Ver Lista de Usuários</Button>
     </Container >
   )
 }
